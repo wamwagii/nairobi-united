@@ -1002,105 +1002,178 @@
             </div>
         </div>
 
-        <div x-show="activeTab === 'news-table'" x-cloak>
-            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">League Table</h2>
-            
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
-                <table class="w-full">
-                    <thead class="bg-green-700 text-white">
-                        <tr>
-                            <th class="py-3 px-4 text-left">Pos</th>
-                            <th class="py-3 px-4 text-left">Team</th>
-                            <th class="py-3 px-4 text-center">P</th>
-                            <th class="py-3 px-4 text-center">W</th>
-                            <th class="py-3 px-4 text-center">D</th>
-                            <th class="py-3 px-4 text-center">L</th>
-                            <th class="py-3 px-4 text-center">GF</th>
-                            <th class="py-3 px-4 text-center">GA</th>
-                            <th class="py-3 px-4 text-center">GD</th>
-                            <th class="py-3 px-4 text-center">Pts</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="bg-green-50 font-bold border-b border-green-100">
-                            <td class="py-3 px-4">1</td>
-                            <td class="py-3 px-4 flex items-center">
-                                <div class="w-6 h-6 bg-green-600 rounded-full mr-2 flex items-center justify-center text-white text-xs">NU</div>
-                                Nairobi United
-                            </td>
-                            <td class="py-3 px-4 text-center">8</td>
-                            <td class="py-3 px-4 text-center">6</td>
-                            <td class="py-3 px-4 text-center">2</td>
-                            <td class="py-3 px-4 text-center">0</td>
-                            <td class="py-3 px-4 text-center">15</td>
-                            <td class="py-3 px-4 text-center">3</td>
-                            <td class="py-3 px-4 text-center">+12</td>
-                            <td class="py-3 px-4 text-center font-bold">20</td>
-                        </tr>
-                        <tr class="border-b border-gray-200">
-                            <td class="py-3 px-4">2</td>
-                            <td class="py-3 px-4 flex items-center">
-                                <div class="w-6 h-6 bg-gray-800 rounded-full mr-2 flex items-center justify-center text-white text-xs">GM</div>
-                                Gor Mahia
-                            </td>
-                            <td class="py-3 px-4 text-center">8</td>
-                            <td class="py-3 px-4 text-center">5</td>
-                            <td class="py-3 px-4 text-center">2</td>
-                            <td class="py-3 px-4 text-center">1</td>
-                            <td class="py-3 px-4 text-center">12</td>
-                            <td class="py-3 px-4 text-center">4</td>
-                            <td class="py-3 px-4 text-center">+8</td>
-                            <td class="py-3 px-4 text-center">17</td>
-                        </tr>
-                        <tr class="border-b border-gray-200">
-                            <td class="py-3 px-4">3</td>
-                            <td class="py-3 px-4 flex items-center">
-                                <div class="w-6 h-6 bg-blue-500 rounded-full mr-2 flex items-center justify-center text-white text-xs">TZ</div>
-                                Tusker FC
-                            </td>
-                            <td class="py-3 px-4 text-center">8</td>
-                            <td class="py-3 px-4 text-center">5</td>
-                            <td class="py-3 px-4 text-center">1</td>
-                            <td class="py-3 px-4 text-center">2</td>
-                            <td class="py-3 px-4 text-center">11</td>
-                            <td class="py-3 px-4 text-center">4</td>
-                            <td class="py-3 px-4 text-center">+7</td>
-                            <td class="py-3 px-4 text-center">16</td>
-                        </tr>
-                        <tr class="border-b border-gray-200">
-                            <td class="py-3 px-4">4</td>
-                            <td class="py-3 px-4 flex items-center">
-                                <div class="w-6 h-6 bg-red-500 rounded-full mr-2 flex items-center justify-center text-white text-xs">AFC</div>
-                                AFC Leopards
-                            </td>
-                            <td class="py-3 px-4 text-center">8</td>
-                            <td class="py-3 px-4 text-center">4</td>
-                            <td class="py-3 px-4 text-center">3</td>
-                            <td class="py-3 px-4 text-center">1</td>
-                            <td class="py-3 px-4 text-center">10</td>
-                            <td class="py-3 px-4 text-center">6</td>
-                            <td class="py-3 px-4 text-center">+4</td>
-                            <td class="py-3 px-4 text-center">15</td>
-                        </tr>
-                        <tr class="border-b border-gray-200">
-                            <td class="py-3 px-4">5</td>
-                            <td class="py-3 px-4 flex items-center">
-                                <div class="w-6 h-6 bg-blue-500 rounded-full mr-2 flex items-center justify-center text-white text-xs">KS</div>
-                                Kariobangi Sharks
-                            </td>
-                            <td class="py-3 px-4 text-center">8</td>
-                            <td class="py-3 px-4 text-center">4</td>
-                            <td class="py-3 px-4 text-center">2</td>
-                            <td class="py-3 px-4 text-center">2</td>
-                            <td class="py-3 px-4 text-center">9</td>
-                            <td class="py-3 px-4 text-center">7</td>
-                            <td class="py-3 px-4 text-center">+2</td>
-                            <td class="py-3 px-4 text-center">14</td>
-                        </tr>
-                    </tbody>
-                </table>
+<div x-show="activeTab === 'news-table'" x-cloak>
+    <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">Kenyan Premier League Table</h2>
+    
+    <!-- Table Controls -->
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+        <div class="flex items-center space-x-4">
+            <span class="text-sm text-gray-600">Position Changes:</span>
+            <div class="flex items-center space-x-2">
+                <div class="flex items-center">
+                    <i class="fas fa-chevron-up text-green-500 text-xs mr-1"></i>
+                    <span class="text-xs text-gray-600">Improved</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-chevron-down text-red-500 text-xs mr-1"></i>
+                    <span class="text-xs text-gray-600">Dropped</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-minus text-gray-400 text-xs mr-1"></i>
+                    <span class="text-xs text-gray-600">No Change</span>
+                </div>
             </div>
         </div>
+        
+        <div class="flex space-x-2">
+            <button class="bg-green-600 text-white px-3 py-1 rounded text-sm font-medium">Full Table</button>
+            <button class="bg-gray-200 text-gray-700 px-3 py-1 rounded text-sm font-medium">Home</button>
+            <button class="bg-gray-200 text-gray-700 px-3 py-1 rounded text-sm font-medium">Away</button>
+        </div>
+    </div>
+    
+    <!-- League Table -->
+    <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
+        <!-- Desktop Table -->
+        <div class="hidden md:block">
+            <table class="w-full">
+                <thead class="bg-green-700 text-white">
+                    <tr>
+                        <th class="py-3 px-4 text-left text-sm">Pos</th>
+                        <th class="py-3 px-4 text-left text-sm">Club</th>
+                        <th class="py-3 px-4 text-center text-sm">P</th>
+                        <th class="py-3 px-4 text-center text-sm">W</th>
+                        <th class="py-3 px-4 text-center text-sm">D</th>
+                        <th class="py-3 px-4 text-center text-sm">L</th>
+                        <th class="py-3 px-4 text-center text-sm">GF</th>
+                        <th class="py-3 px-4 text-center text-sm">GA</th>
+                        <th class="py-3 px-4 text-center text-sm">GD</th>
+                        <th class="py-3 px-4 text-center text-sm">Pts</th>
+                        <th class="py-3 px-4 text-center text-sm">Form</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template x-for="team in leagueTable" :key="team.id">
+                        <tr class="border-b border-gray-200 hover:bg-gray-50 transition-colors"
+                            :class="team.id === 1 ? 'bg-green-50 font-semibold' : ''">
+                            <td class="py-3 px-4">
+                                <div class="flex items-center">
+                                    <span class="font-medium" x-text="team.position"></span>
+                                    <div class="ml-2">
+                                        <template x-if="team.positionChange > 0">
+                                            <i class="fas fa-chevron-up text-green-500 text-xs"></i>
+                                        </template>
+                                        <template x-if="team.positionChange < 0">
+                                            <i class="fas fa-chevron-down text-red-500 text-xs"></i>
+                                        </template>
+                                        <template x-if="team.positionChange === 0">
+                                            <i class="fas fa-minus text-gray-400 text-xs"></i>
+                                        </template>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="py-3 px-4">
+                                <div class="flex items-center">
+                                    <div class="w-8 h-8 rounded-full mr-3 flex-shrink-0 bg-gray-200 overflow-hidden">
+                                        <img :src="team.logo" :alt="team.name" class="w-full h-full object-cover">
+                                    </div>
+                                    <span class="font-medium" x-text="team.name"></span>
+                                </div>
+                            </td>
+                            <td class="py-3 px-4 text-center" x-text="team.played"></td>
+                            <td class="py-3 px-4 text-center" x-text="team.won"></td>
+                            <td class="py-3 px-4 text-center" x-text="team.drawn"></td>
+                            <td class="py-3 px-4 text-center" x-text="team.lost"></td>
+                            <td class="py-3 px-4 text-center" x-text="team.goalsFor"></td>
+                            <td class="py-3 px-4 text-center" x-text="team.goalsAgainst"></td>
+                            <td class="py-3 px-4 text-center font-medium" 
+                                :class="team.goalDifference > 0 ? 'text-green-600' : team.goalDifference < 0 ? 'text-red-600' : 'text-gray-600'"
+                                x-text="team.goalDifference > 0 ? '+' + team.goalDifference : team.goalDifference"></td>
+                            <td class="py-3 px-4 text-center font-bold" x-text="team.points"></td>
+                            <td class="py-3 px-4 text-center">
+                                <div class="flex justify-center space-x-1">
+                                    <template x-for="result in team.form" :key="result">
+                                        <div class="w-2 h-2 rounded-full" 
+                                             :class="result === 'W' ? 'bg-green-500' : result === 'D' ? 'bg-yellow-500' : 'bg-red-500'"></div>
+                                    </template>
+                                </div>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Mobile Cards -->
+        <div class="md:hidden">
+            <template x-for="team in leagueTable" :key="team.id">
+                <div class="border-b border-gray-200 p-4 hover:bg-gray-50 transition-colors"
+                     :class="team.id === 1 ? 'bg-green-50' : ''">
+                    <div class="flex justify-between items-start mb-2">
+                        <div class="flex items-center">
+                            <span class="font-bold text-lg mr-2" x-text="team.position"></span>
+                            <div class="mr-2">
+                                <template x-if="team.positionChange > 0">
+                                    <i class="fas fa-chevron-up text-green-500 text-xs"></i>
+                                </template>
+                                <template x-if="team.positionChange < 0">
+                                    <i class="fas fa-chevron-down text-red-500 text-xs"></i>
+                                </template>
+                                <template x-if="team.positionChange === 0">
+                                    <i class="fas fa-minus text-gray-400 text-xs"></i>
+                                </template>
+                            </div>
+                            <div class="w-8 h-8 rounded-full mr-3 bg-gray-200 overflow-hidden">
+                                <img :src="team.logo" :alt="team.name" class="w-full h-full object-cover">
+                            </div>
+                            <span class="font-medium text-sm" x-text="team.name"></span>
+                        </div>
+                        <div class="text-right">
+                            <div class="font-bold text-lg" x-text="team.points"></div>
+                            <div class="text-xs text-gray-500">PTS</div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-4 gap-2 text-xs text-center mb-2">
+                        <div>
+                            <div class="font-semibold" x-text="team.played"></div>
+                            <div class="text-gray-500">PL</div>
+                        </div>
+                        <div>
+                            <div class="font-semibold" x-text="team.won"></div>
+                            <div class="text-gray-500">W</div>
+                        </div>
+                        <div>
+                            <div class="font-semibold" x-text="team.drawn"></div>
+                            <div class="text-gray-500">D</div>
+                        </div>
+                        <div>
+                            <div class="font-semibold" x-text="team.lost"></div>
+                            <div class="text-gray-500">L</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between items-center text-xs">
+                        <div>
+                            <span class="font-semibold" x-text="team.goalsFor"></span>
+                            <span class="text-gray-500"> : </span>
+                            <span class="font-semibold" x-text="team.goalsAgainst"></span>
+                            <span class="ml-2 font-medium" 
+                                  :class="team.goalDifference > 0 ? 'text-green-600' : team.goalDifference < 0 ? 'text-red-600' : 'text-gray-600'"
+                                  x-text="team.goalDifference > 0 ? '+' + team.goalDifference : team.goalDifference"></span>
+                        </div>
+                        <div class="flex space-x-1">
+                            <template x-for="result in team.form" :key="result">
+                                <div class="w-2 h-2 rounded-full" 
+                                     :class="result === 'W' ? 'bg-green-500' : result === 'D' ? 'bg-yellow-500' : 'bg-red-500'"></div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+</div>
 
         <!-- Shop Tab -->
         <div x-show="activeTab === 'shop'" x-cloak>
@@ -1231,7 +1304,7 @@
         </div>
     </footer>
 
-    <script>
+<script>
     function nairobiUnitedApp() {
         return {
             activeTab: 'home',
@@ -1382,6 +1455,298 @@
                     stats: "Goals: 5 | Assists: 7",
                     badges: ["Young Talent", "Kenyan"],
                     category: "Forwards"
+                }
+            ],
+            
+            // League table data with 18 teams
+            leagueTable: [
+                {
+                    id: 1,
+                    position: 1,
+                    name: "Nairobi United",
+                    logo: "tmlogo/logo.png",
+                    played: 8,
+                    won: 6,
+                    drawn: 2,
+                    lost: 0,
+                    goalsFor: 15,
+                    goalsAgainst: 3,
+                    goalDifference: 12,
+                    points: 20,
+                    form: ['W', 'W', 'D', 'W', 'W'],
+                    positionChange: 0
+                },
+                {
+                    id: 2,
+                    position: 2,
+                    name: "Gor Mahia",
+                    logo: "tmlogo/gor.png",
+                    played: 8,
+                    won: 5,
+                    drawn: 2,
+                    lost: 1,
+                    goalsFor: 12,
+                    goalsAgainst: 4,
+                    goalDifference: 8,
+                    points: 17,
+                    form: ['W', 'D', 'W', 'L', 'W'],
+                    positionChange: 1
+                },
+                {
+                    id: 3,
+                    position: 3,
+                    name: "Tusker FC",
+                    logo: "tmlogo/tusker.png",
+                    played: 8,
+                    won: 5,
+                    drawn: 1,
+                    lost: 2,
+                    goalsFor: 11,
+                    goalsAgainst: 4,
+                    goalDifference: 7,
+                    points: 16,
+                    form: ['W', 'L', 'W', 'W', 'D'],
+                    positionChange: -1
+                },
+                {
+                    id: 4,
+                    position: 4,
+                    name: "AFC Leopards",
+                    logo: "tmlogo/afc.png",
+                    played: 8,
+                    won: 4,
+                    drawn: 3,
+                    lost: 1,
+                    goalsFor: 10,
+                    goalsAgainst: 6,
+                    goalDifference: 4,
+                    points: 15,
+                    form: ['D', 'W', 'D', 'W', 'D'],
+                    positionChange: 2
+                },
+                {
+                    id: 5,
+                    position: 5,
+                    name: "Kariobangi Sharks",
+                    logo: "tmlogo/sharks.png",
+                    played: 8,
+                    won: 4,
+                    drawn: 2,
+                    lost: 2,
+                    goalsFor: 9,
+                    goalsAgainst: 7,
+                    goalDifference: 2,
+                    points: 14,
+                    form: ['W', 'L', 'D', 'W', 'W'],
+                    positionChange: 0
+                },
+                {
+                    id: 6,
+                    position: 6,
+                    name: "Bandari FC",
+                    logo: "tmlogo/bandari.png",
+                    played: 8,
+                    won: 4,
+                    drawn: 1,
+                    lost: 3,
+                    goalsFor: 8,
+                    goalsAgainst: 7,
+                    goalDifference: 1,
+                    points: 13,
+                    form: ['W', 'L', 'W', 'L', 'D'],
+                    positionChange: -2
+                },
+                {
+                    id: 7,
+                    position: 7,
+                    name: "Sofapaka",
+                    logo: "tmlogo/sofapaka.png",
+                    played: 8,
+                    won: 3,
+                    drawn: 3,
+                    lost: 2,
+                    goalsFor: 10,
+                    goalsAgainst: 9,
+                    goalDifference: 1,
+                    points: 12,
+                    form: ['D', 'W', 'D', 'L', 'W'],
+                    positionChange: 1
+                },
+                {
+                    id: 8,
+                    position: 8,
+                    name: "KCB",
+                    logo: "tmlogo/kcb.png",
+                    played: 8,
+                    won: 3,
+                    drawn: 2,
+                    lost: 3,
+                    goalsFor: 8,
+                    goalsAgainst: 8,
+                    goalDifference: 0,
+                    points: 11,
+                    form: ['L', 'W', 'D', 'L', 'W'],
+                    positionChange: 3
+                },
+                {
+                    id: 9,
+                    position: 9,
+                    name: "Posta Rangers",
+                    logo: "tmlogo/posta.png",
+                    played: 8,
+                    won: 3,
+                    drawn: 2,
+                    lost: 3,
+                    goalsFor: 7,
+                    goalsAgainst: 8,
+                    goalDifference: -1,
+                    points: 11,
+                    form: ['W', 'L', 'D', 'W', 'L'],
+                    positionChange: -1
+                },
+                {
+                    id: 10,
+                    position: 10,
+                    name: "Ulinzi Stars",
+                    logo: "tmlogo/ulinzi.png",
+                    played: 8,
+                    won: 2,
+                    drawn: 4,
+                    lost: 2,
+                    goalsFor: 6,
+                    goalsAgainst: 6,
+                    goalDifference: 0,
+                    points: 10,
+                    form: ['D', 'D', 'W', 'L', 'D'],
+                    positionChange: 0
+                },
+                {
+                    id: 11,
+                    position: 11,
+                    name: "Wazito FC",
+                    logo: "tmlogo/wazito.png",
+                    played: 8,
+                    won: 2,
+                    drawn: 3,
+                    lost: 3,
+                    goalsFor: 7,
+                    goalsAgainst: 9,
+                    goalDifference: -2,
+                    points: 9,
+                    form: ['L', 'D', 'W', 'D', 'L'],
+                    positionChange: -2
+                },
+                {
+                    id: 12,
+                    position: 12,
+                    name: "Nzoia Sugar",
+                    logo: "tmlogo/nzoia.png",
+                    played: 8,
+                    won: 2,
+                    drawn: 2,
+                    lost: 4,
+                    goalsFor: 6,
+                    goalsAgainst: 10,
+                    goalDifference: -4,
+                    points: 8,
+                    form: ['L', 'W', 'L', 'D', 'L'],
+                    positionChange: 1
+                },
+                {
+                    id: 13,
+                    position: 13,
+                    name: "Mathare United",
+                    logo: "tmlogo/mathare.png",
+                    played: 8,
+                    won: 1,
+                    drawn: 4,
+                    lost: 3,
+                    goalsFor: 5,
+                    goalsAgainst: 8,
+                    goalDifference: -3,
+                    points: 7,
+                    form: ['D', 'L', 'D', 'D', 'W'],
+                    positionChange: 2
+                },
+                {
+                    id: 14,
+                    position: 14,
+                    name: "Vihiga United",
+                    logo: "tmlogo/vihiga.png",
+                    played: 8,
+                    won: 1,
+                    drawn: 3,
+                    lost: 4,
+                    goalsFor: 4,
+                    goalsAgainst: 9,
+                    goalDifference: -5,
+                    points: 6,
+                    form: ['D', 'L', 'L', 'D', 'W'],
+                    positionChange: -1
+                },
+                {
+                    id: 15,
+                    position: 15,
+                    name: "Kakamega Homeboyz",
+                    logo: "tmlogo/homeboyz.png",
+                    played: 8,
+                    won: 1,
+                    drawn: 2,
+                    lost: 5,
+                    goalsFor: 5,
+                    goalsAgainst: 11,
+                    goalDifference: -6,
+                    points: 5,
+                    form: ['L', 'L', 'D', 'W', 'L'],
+                    positionChange: -3
+                },
+                {
+                    id: 16,
+                    position: 16,
+                    name: "Bidco United",
+                    logo: "tmlogo/bidco.png",
+                    played: 8,
+                    won: 0,
+                    drawn: 4,
+                    lost: 4,
+                    goalsFor: 3,
+                    goalsAgainst: 9,
+                    goalDifference: -6,
+                    points: 4,
+                    form: ['D', 'L', 'D', 'L', 'D'],
+                    positionChange: 0
+                },
+                {
+                    id: 17,
+                    position: 17,
+                    name: "Mara Sugar",
+                    logo: "tmlogo/mara.png",
+                    played: 8,
+                    won: 0,
+                    drawn: 3,
+                    lost: 5,
+                    goalsFor: 2,
+                    goalsAgainst: 10,
+                    goalDifference: -8,
+                    points: 3,
+                    form: ['L', 'D', 'L', 'L', 'D'],
+                    positionChange: 1
+                },
+                {
+                    id: 18,
+                    position: 18,
+                    name: "Nairobi City Stars",
+                    logo: "tmlogo/citystars.png",
+                    played: 8,
+                    won: 0,
+                    drawn: 2,
+                    lost: 6,
+                    goalsFor: 1,
+                    goalsAgainst: 12,
+                    goalDifference: -11,
+                    points: 2,
+                    form: ['L', 'L', 'D', 'L', 'L'],
+                    positionChange: -1
                 }
             ],
             
