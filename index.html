@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nairobi United FC | Official Club Website | Kenyan Premier League</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Official website of Nairobi United FC - Kenyan Premier League football club. Get latest news, fixtures, results, player profiles, tickets and merchandise.">
+    <meta name="keywords" content="Nairobi United, Nairobi United FC, Nairobi Utd, Kenyan Premier League, KPL, Kenyan football, Nairobi football, football Kenya, soccer Kenya, Nairobi City Stadium">
+    <meta name="author" content="Nairobi United FC">
+    
+    <!-- Open Graph Meta Tags for Social Sharing -->
+    <meta property="og:title" content="Nairobi United FC | Official Club Website">
+    <meta property="og:description" content="Official website of Nairobi United FC - Kenyan Premier League football club. Get latest news, fixtures, results, and tickets.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nairobiunitedfc.com">
+    <meta property="og:image" content="https://nairobiunitedfc.com/logo.png">
+    <meta property="og:site_name" content="Nairobi United FC">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Nairobi United FC | Official Club Website">
+    <meta name="twitter:description" content="Official website of Nairobi United FC - Kenyan Premier League football club">
+    <meta name="twitter:image" content="https://nairobiunitedfc.com/logo.png">
+    <meta name="twitter:site" content="@NairobiUnitedFC">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="tmlogo/logo.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://nairobiunitedfc.com">
+    
+    <!-- External Resources -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        [x-cloak] { display: none !important; }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans" x-data="nairobiUnitedApp()">
+    <!-- Header -->
+    <header class="bg-green-700 text-white sticky top-0 shadow-lg z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <div>
+                        <img src="tmlogo/logo.png" alt="Nairobi United Logo" class="h-16">
+                    </div>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-1">
+                    <a href="#" @click="activeTab = 'home'" class="px-4 py-2 rounded-lg font-medium transition-all duration-200" 
+                       :class="activeTab === 'home' ? 'bg-green-800 text-white' : 'text-green-100 hover:bg-green-600'">Home</a>
+                    
+                    <a href="#" @click="activeTab = 'about'" class="px-4 py-2 rounded-lg font-medium transition-all duration-200"
+                       :class="activeTab === 'about' ? 'bg-green-800 text-white' : 'text-green-100 hover:bg-green-600'">About Us</a>
+                    
+                    <!-- Team Dropdown -->
+                    <div class="dropdown relative">
+                        <button class="px-4 py-2 rounded-lg font-medium flex items-center transition-all duration-200"
+                                :class="activeTab.startsWith('team') ? 'bg-green-800 text-white' : 'text-green-100 hover:bg-green-600'">
+                            Team <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                        </button>
+                        <div class="dropdown-menu absolute hidden bg-white text-green-800 rounded-lg shadow-xl mt-1 w-48 py-2 z-50">
+                            <a href="#" @click="activeTab = 'team-first'" class="block px-4 py-2 hover:bg-green-100">First Team</a>
+                            <a href="#" @click="activeTab = 'team-youth'" class="block px-4 py-2 hover:bg-green-100">Youth Team</a>
+                            <a href="#" @click="activeTab = 'team-women'" class="block px-4 py-2 hover:bg-green-100">Women Team</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Latest News Dropdown -->
+                    <div class="dropdown relative">
+                        <button class="px-4 py-2 rounded-lg font-medium flex items-center transition-all duration-200"
+                                :class="activeTab.startsWith('news') ? 'bg-green-800 text-white' : 'text-green-100 hover:bg-green-600'">
+                            Latest News <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                        </button>
+                        <div class="dropdown-menu absolute hidden bg-white text-green-800 rounded-lg shadow-xl mt-1 w-56 py-2 z-50">
+                            <a href="#" @click="activeTab = 'news-results'" class="block px-4 py-2 hover:bg-green-100">Results</a>
+                            <a href="#" @click="activeTab = 'news-fixtures'" class="block px-4 py-2 hover:bg-green-100">Fixtures</a>
+                            <a href="#" @click="activeTab = 'news-table'" class="block px-4 py-2 hover:bg-green-100">League Table</a>
+                        </div>
+                    </div>
+                    
+                    <a href="#" @click="activeTab = 'shop'" class="px-4 py-2 rounded-lg font-medium transition-all duration-200"
+                       :class="activeTab === 'shop' ? 'bg-green-800 text-white' : 'text-green-100 hover:bg-green-600'">Shop</a>
+                </nav>
+                
+                <!-- Mobile menu button -->
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden text-white p-2">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div x-show="mobileMenuOpen" class="lg:hidden mt-4 pb-2" x-cloak>
+                <a href="#" @click="activeTab = 'home'; mobileMenuOpen = false" class="block py-2 px-4 rounded-lg mb-1" 
+                   :class="activeTab === 'home' ? 'bg-green-800 text-white' : 'text-green-100 hover:bg-green-600'">Home</a>
+                <a href="#" @click="activeTab = 'about'; mobileMenuOpen = false" class="block py-2 px-4 rounded-lg mb-1"
+                   :class="activeTab === 'about' ? 'bg-green-800 text-white' : 'text-green-100 hover:bg-green-600'">About Us</a>
+                
+                <div class="mb-1">
+                    <button @click="teamMenuOpen = !teamMenuOpen" class="w-full text-left py-2 px-4 rounded-lg flex justify-between items-center"
+                            :class="activeTab.startsWith('team') ? 'bg-green-800 text-white' : 'text-green-100 hover:bg-green-600'">
+                        <span>Team</span>
+                        <i class="fas fa-chevron-down text-xs" :class="{'rotate-180': teamMenuOpen}"></i>
+                    </button>
+                    <div x-show="teamMenuOpen" class="pl-6 mt-1" x-cloak>
+                        <a href="#" @click="activeTab = 'team-first'; mobileMenuOpen = false" class="block py-2 rounded-lg mb-1"
+                           :class="activeTab === 'team-first' ? 'text-yellow-300' : 'text-green-100 hover:text-yellow-300'">First Team</a>
+                        <a href="#" @click="activeTab = 'team-youth'; mobileMenuOpen = false" class="block py-2 rounded-lg mb-1"
+                           :class="activeTab === 'team-youth' ? 'text-yellow-300' : 'text-green-100 hover:text-yellow-300'">Youth Team</a>
+                        <a href="#" @click="activeTab = 'team-women'; mobileMenuOpen = false" class="block py-2 rounded-lg"
+                           :class="activeTab === 'team-women' ? 'text-yellow-300' : 'text-green-100 hover:text-yellow-300'">Women Team</a>
+                    </div>
+                </div>
+                
+                <div class="mb-1">
+                    <button @click="newsMenuOpen = !newsMenuOpen" class="w-full text-left py-2 px-4 rounded-lg flex justify-between items-center"
+                            :class="activeTab.startsWith('news') ? 'bg-green-800 text-white' : 'text-green-100 hover:bg-green-600'">
+                        <span>Latest News</span>
+                        <i class="fas fa-chevron-down text-xs" :class="{'rotate-180': newsMenuOpen}"></i>
+                    </button>
+                    <div x-show="newsMenuOpen" class="pl-6 mt-1" x-cloak>
+                        <a href="#" @click="activeTab = 'news-results'; mobileMenuOpen = false" class="block py-2 rounded-lg mb-1"
+                           :class="activeTab === 'news-results' ? 'text-yellow-300' : 'text-green-100 hover:text-yellow-300'">Results</a>
+                        <a href="#" @click="activeTab = 'news-fixtures'; mobileMenuOpen = false" class="block py-2 rounded-lg mb-1"
+                           :class="activeTab === 'news-fixtures' ? 'text-yellow-300' : 'text-green-100 hover:text-yellow-300'">Fixtures</a>
+                        <a href="#" @click="activeTab = 'news-table'; mobileMenuOpen = false" class="block py-2 rounded-lg"
+                           :class="activeTab === 'news-table' ? 'text-yellow-300' : 'text-green-100 hover:text-yellow-300'">League Table</a>
+                    </div>
+                </div>
+                
+                <a href="#" @click="activeTab = 'shop'; mobileMenuOpen = false" class="block py-2 px-4 rounded-lg"
+                   :class="activeTab === 'shop' ? 'bg-green-800 text-white' : 'text-green-100 hover:bg-green-600'">Shop</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Home Tab -->
+        <div x-show="activeTab === 'home'" x-cloak>
+      <!-- Hero Section -->
+<section class="min-h-screen bg-[url('warming.png')] bg-cover bg-center bg-no-repeat flex items-center justify-start rounded-2xl p-8 mb-12 shadow-lg">
+    <div class="max-w-3xl">
+        <h1 class="text-4xl md:text-5xl font-black mb-4">Welcome to Nairobi United</h1>
+        <p class="text-xl mb-6">Proudly representing Kenya in the top football league. Experience the passion, witness the glory.</p>
+        <div class="flex flex-wrap gap-4">
+            <button @click="activeTab = 'news-fixtures'" class="bg-yellow-400 hover:bg-yellow-300 text-green-900 font-bold py-3 px-6 rounded-full shadow-lg transition hover:scale-105">
+                Upcoming Fixtures
+            </button>
+            <button @click="activeTab = 'shop'" class="bg-transparent border-2 border-white hover:bg-white/10 text-white font-bold py-3 px-6 rounded-full transition">
+                Buy Tickets
+            </button>
+        </div>
+    </div>
+</section>
+            <!-- Next Match Spotlight -->
+            <section class="mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">Next Match</h2>
+                <div class="bg-white rounded-xl shadow-lg p-6 max-w-4xl">
+                    <div class="flex flex-col md:flex-row items-center justify-between">
+                        <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                            <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-xl"><img src="tmlogo/logo.png" alt="Nairobi United Logo" class="w-full h-full object-cover rounded-full"></div>
+                            <div class="text-center md:text-left">
+                                <h3 class="text-xl font-bold">Nairobi United</h3>
+                                <p class="text-gray-600">Home</p>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center my-4 md:my-0">
+                            <div class="text-2xl font-black text-gray-800">VS</div>
+                            <div class="text-lg text-gray-600">Kenyan Premier League</div>
+                            <div class="text-gray-700 font-medium">Sat, Oct 14, 2025 • 16:00 EAT</div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="text-center md:text-right">
+                                <h3 class="text-xl font-bold">Gor Mahia</h3>
+                                <p class="text-gray-600">Away</p>
+                            </div>
+                            <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm text-center"><img src="tmlogo/gor.png" alt="Gor Mahia Logo" class="w-full h-full object-cover rounded-full"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-6 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <div class="flex items-center text-gray-700">
+                                <i class="fas fa-map-marker-alt text-green-600 mr-2"></i>
+                                <span>Nairobi City Stadium</span>
+                            </div>
+                        </div>
+                        <button @click="activeTab = 'shop'" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full transition">
+                            Buy Tickets
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Latest Results & News -->
+            <section class="mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">Latest Results & News</h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Latest Results -->
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Recent Matches</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                                <div class="flex items-center">
+                                    <div class="w-8 h-8 rounded-full mr-3 flex items-center justify-center text-white text-xs font-bold"><img src="tmlogo/logo.png" alt="Nairobi United Logo" class="w-full h-full object-cover rounded-full"></div>
+                                    <span class="font-medium">Nairobi United</span>
+                                </div>
+                                <div class="bg-green-100 text-green-800 font-bold px-3 py-1 rounded">2 - 1</div>
+                                <div class="flex items-center">
+                                    <span class="font-medium mr-3">Kariobangi Sharks</span>
+                                    <div class="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold"><img src="tmlogo/sharks.png" alt="Kariobangi Sharks Logo" class="w-full h-full object-cover rounded-full"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                                <div class="flex items-center">
+                                    <div class="w-8 h-8 rounded-full mr-3 flex items-center justify-center text-white text-xs font-bold"><img src="tmlogo/afc.png" alt="AFC Leopards Logo" class="w-full h-full object-cover rounded-full"></div>
+                                    <span class="font-medium">AFC Leopards</span>
+                                </div>
+                                <div class="bg-gray-200 text-gray-800 font-bold px-3 py-1 rounded">1 - 1</div>
+                                <div class="flex items-center">
+                                    <span class="font-medium mr-3">Nairobi United</span>
+                                    <div class="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold"><img src="tmlogo/logo.png" alt="Nairobi United Logo" class="w-full h-full object-cover rounded-full"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                                <div class="flex items-center">
+                                    <div class="w-8 h-8 rounded-full mr-3 flex items-center justify-center text-white text-xs font-bold"><img src="tmlogo/logo.png" alt="Nairobi United Logo" class="w-full h-full object-cover rounded-full"></div>
+                                    <span class="font-medium">Nairobi United</span>
+                                </div>
+                                <div class="bg-green-100 text-green-800 font-bold px-3 py-1 rounded">3 - 0</div>
+                                <div class="flex items-center">
+                                    <span class="font-medium mr-3">Posta Rangers</span>
+                                    <div class="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold"><img src="tmlogo/posta.jpg" alt="Posta Rangers Logo" class="w-full h-full object-cover rounded-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button @click="activeTab = 'news-results'" class="w-full mt-6 text-green-600 hover:text-green-800 font-medium flex items-center justify-center">
+                            View All Results <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Latest News -->
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Club News</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-green-600 pl-4 py-1">
+                                <h4 class="font-bold text-gray-800">United Sign New Striker from Brazil</h4>
+                                <p class="text-gray-600 text-sm mt-1">Nairobi United completes signing of Brazilian forward Carlos Silva</p>
+                                <span class="text-gray-500 text-xs">Oct 5, 2025</span>
+                            </div>
+                            
+                            <div class="border-l-4 border-yellow-500 pl-4 py-1">
+                                <h4 class="font-bold text-gray-800">Youth Team Wins National Championship</h4>
+                                <p class="text-gray-600 text-sm mt-1">Our U-20 squad brings home the national youth trophy</p>
+                                <span class="text-gray-500 text-xs">Sep 28, 2025</span>
+                            </div>
+                            
+                            <div class="border-l-4 border-green-600 pl-4 py-1">
+                                <h4 class="font-bold text-gray-800">Stadium Upgrade Plans Announced</h4>
+                                <p class="text-gray-600 text-sm mt-1">Nairobi City Stadium to undergo major renovations next year</p>
+                                <span class="text-gray-500 text-xs">Sep 20, 2025</span>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full mt-6 text-green-600 hover:text-green-800 font-medium flex items-center justify-center">
+                            More News <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- League Table Snapshot -->
+            <section class="mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">League Standings</h2>
+                
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <table class="w-full">
+                        <thead class="bg-green-700 text-white">
+                            <tr>
+                                <th class="py-3 px-4 text-left">Pos</th>
+                                <th class="py-3 px-4 text-left">Team</th>
+                                <th class="py-3 px-4 text-center">P</th>
+                                <th class="py-3 px-4 text-center">W</th>
+                                <th class="py-3 px-4 text-center">D</th>
+                                <th class="py-3 px-4 text-center">L</th>
+                                <th class="py-3 px-4 text-center">GD</th>
+                                <th class="py-3 px-4 text-center">Pts</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-green-50 font-bold">
+                                <td class="py-3 px-4">1</td>
+                                <td class="py-3 px-4 flex items-center">
+                                    <div class="w-6 h-6 rounded-full mr-2 flex items-center justify-center text-white text-xs"><img src="tmlogo/logo.png" alt="Nairobi United Logo" class="w-full h-full object-cover rounded-full"></div>
+                                    Nairobi United
+                                </td>
+                                <td class="py-3 px-4 text-center">8</td>
+                                <td class="py-3 px-4 text-center">6</td>
+                                <td class="py-3 px-4 text-center">2</td>
+                                <td class="py-3 px-4 text-center">0</td>
+                                <td class="py-3 px-4 text-center">+12</td>
+                                <td class="py-3 px-4 text-center font-bold">20</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-4">2</td>
+                                <td class="py-3 px-4 flex items-center">
+                                    <div class="w-6 h-6 rounded-full mr-2 flex items-center justify-center text-white text-xs"><img src="tmlogo/gor.png" alt="Gor Mahia Logo" class="w-full h-full object-cover rounded-full"></div>
+                                    Gor Mahia
+                                </td>
+                                <td class="py-3 px-4 text-center">8</td>
+                                <td class="py-3 px-4 text-center">5</td>
+                                <td class="py-3 px-4 text-center">2</td>
+                                <td class="py-3 px-4 text-center">1</td>
+                                <td class="py-3 px-4 text-center">+8</td>
+                                <td class="py-3 px-4 text-center">17</td>
+                            </tr>
+                            <tr class="border-b border-gray-200">
+                                <td class="py-3 px-4">3</td>
+                                <td class="py-3 px-4 flex items-center">
+                                    <div class="w-6 h-6 bg-blue-500 rounded-full mr-2 flex items-center justify-center text-white text-xs"><img src="tmlogo/tusker.png" alt="Tusker FC Logo" class="w-full h-full object-cover rounded-full"></div>
+                                    Tusker FC
+                                </td>
+                                <td class="py-3 px-4 text-center">8</td>
+                                <td class="py-3 px-4 text-center">5</td>
+                                <td class="py-3 px-4 text-center">1</td>
+                                <td class="py-3 px-4 text-center">2</td>
+                                <td class="py-3 px-4 text-center">+7</td>
+                                <td class="py-3 px-4 text-center">16</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <button @click="activeTab = 'news-table'" class="w-full py-3 text-green-600 hover:text-green-800 font-medium bg-gray-50 hover:bg-gray-100 transition">
+                        View Full Table <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Featured Player -->
+            <section class="mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">Player of the Month</h2>
+                
+                <div class="bg-gradient-to-r from-green-600 to-green-800 text-white rounded-2xl p-8 shadow-lg">
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/3 mb-6 md:mb-0 flex justify-center">
+                            <div class="w-48 h-48 bg-green-500 rounded-full border-4 border-yellow-400 flex items-center justify-center text-white">
+                                <i class="fas fa-user text-6xl"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="md:w-2/3 md:pl-8 text-center md:text-left">
+                            <h3 class="text-3xl font-bold mb-2">Brian Omondi</h3>
+                            <p class="text-green-200 text-xl mb-4">Forward • #9</p>
+                            
+                            <div class="grid grid-cols-2 gap-4 mb-6">
+                                <div class="bg-green-700 p-3 rounded-lg text-center">
+                                    <div class="text-2xl font-bold">8</div>
+                                    <div class="text-green-200 text-sm">Goals</div>
+                                </div>
+                                <div class="bg-green-700 p-3 rounded-lg text-center">
+                                    <div class="text-2xl font-bold">5</div>
+                                    <div class="text-green-200 text-sm">Assists</div>
+                                </div>
+                            </div>
+                            
+                            <p class="text-green-100 mb-6">Brian has been in exceptional form this month, scoring crucial goals in our last three matches and leading the team to the top of the table.</p>
+                            
+                            <button @click="activeTab = 'team-first'" class="bg-yellow-400 hover:bg-yellow-300 text-green-900 font-bold py-2 px-6 rounded-full transition">
+                                View Full Squad
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stadium Information -->
+            <section>
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">Our Home</h2>
+                
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="md:flex">
+                        <div class="md:w-1/2 bg-gradient-to-br from-green-400 to-yellow-300 min-h-64 flex items-center justify-center">
+                            <i class="fas fa-stadium text-white text-6xl opacity-80"></i>
+                        </div>
+                        
+                        <div class="md:w-1/2 p-8">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Nairobi City Stadium</h3>
+                            
+                            <div class="space-y-4 mb-6">
+                                <div class="flex items-start">
+                                    <i class="fas fa-map-marker-alt text-green-600 mt-1 mr-3"></i>
+                                    <div>
+                                        <p class="font-medium">City Square, Nairobi</p>
+                                        <p class="text-gray-600 text-sm">Next to Nyayo National Stadium</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <i class="fas fa-users text-green-600 mt-1 mr-3"></i>
+                                    <div>
+                                        <p class="font-medium">Capacity: 15,000</p>
+                                        <p class="text-gray-600 text-sm">All-seater stadium</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <i class="fas fa-calendar-alt text-green-600 mt-1 mr-3"></i>
+                                    <div>
+                                        <p class="font-medium">Established: 1965</p>
+                                        <p class="text-gray-600 text-sm">Recently renovated in 2020</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full transition">
+                                Stadium Tour
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+<!-- About Us Tab -->
+<div x-show="activeTab === 'about'" x-cloak>
+  <!-- Hero Section with Background Image -->
+  <section class="min-h-[50vh] bg-gray-900 bg-[url('warming.png')] bg-cover bg-center bg-no-repeat bg-blend-overlay bg-opacity-40 flex items-center justify-center rounded-2xl p-8 mb-12 shadow-lg relative">
+    <!-- Dark Overlay -->
+    <div class="absolute inset-0 bg-black/40 rounded-2xl"></div>
+    <!-- Content -->
+    <div class="max-w-4xl text-center text-white relative z-10">
+      <h1 class="text-4xl md:text-6xl font-black mb-6">About Nairobi United</h1>
+      <p class="text-xl md:text-2xl mb-8">Proudly representing Kenya in the top football league since 1960</p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <button @click="scrollToSection('history')" class="bg-yellow-400 hover:bg-yellow-300 text-green-900 font-bold py-3 px-6 rounded-full shadow-lg transition hover:scale-105">
+          Our History
+        </button>
+        <button @click="scrollToSection('stadium')" class="bg-transparent border-2 border-white hover:bg-white/10 text-white font-bold py-3 px-6 rounded-full transition">
+          Our Home
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- History Section -->
+  <section id="history" class="bg-white rounded-xl shadow-lg p-8 mb-8">
+    <div class="flex flex-col md:flex-row items-center mb-8">
+      <div class="md:w-1/3 mb-6 md:mb-0 flex justify-center">
+        <div class="w-48 h-48">
+          <img src="tmlogo/logo.png" alt="Nairobi United Logo" class="w-full h-full object-cover rounded-full shadow-lg">
+        </div>
+      </div>
+      
+      <div class="md:w-2/3 md:pl-8">
+        <h2 class="text-3xl font-bold text-gray-800 mb-4">Our History & Legacy</h2>
+        <p class="text-gray-700 mb-4 text-lg">Founded in 1960, Nairobi United has been a cornerstone of Kenyan football for over six decades. From our humble beginnings in the Nairobi leagues to our current status as Kenyan Premier League contenders, our journey has been defined by passion, resilience, and excellence.</p>
+        <p class="text-gray-700 mb-4 text-lg">We've won numerous domestic titles and proudly represented Kenya in continental competitions, establishing ourselves as one of East Africa's most respected football institutions.</p>
+        <p class="text-gray-700 text-lg">Our club is built on the principles of community, excellence, and passion for the beautiful game. We take pride in developing local talent and providing exciting football for our dedicated fans.</p>
+      </div>
+    </div>
+    
+    <!-- Achievements -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <div class="bg-green-50 p-6 rounded-lg text-center transform transition hover:scale-105 hover:shadow-lg">
+        <div class="text-4xl font-bold text-green-700 mb-2">15</div>
+        <div class="text-green-800 font-medium">League Titles</div>
+      </div>
+      
+      <div class="bg-yellow-50 p-6 rounded-lg text-center transform transition hover:scale-105 hover:shadow-lg">
+        <div class="text-4xl font-bold text-yellow-700 mb-2">8</div>
+        <div class="text-yellow-800 font-medium">Domestic Cups</div>
+      </div>
+      
+      <div class="bg-green-50 p-6 rounded-lg text-center transform transition hover:scale-105 hover:shadow-lg">
+        <div class="text-4xl font-bold text-green-700 mb-2">5</div>
+        <div class="text-green-800 font-medium">Continental Appearances</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Training Facilities Section -->
+  <section class="bg-gradient-to-r from-green-600 to-green-800 text-white rounded-2xl shadow-lg p-8 mb-8">
+    <div class="flex flex-col md:flex-row items-center">
+      <div class="md:w-2/3 mb-6 md:mb-0">
+        <h2 class="text-3xl font-bold mb-4">World-Class Training Facilities</h2>
+        <p class="text-green-100 mb-4 text-lg">Our state-of-the-art training complex in Karen features three professional-grade pitches, modern gym facilities, sports science labs, and recovery centers.</p>
+        <p class="text-green-100 mb-6 text-lg">The academy nurtures young talent through our renowned youth development program, producing some of Kenya's finest footballers through comprehensive technical and tactical training.</p>
+        <div class="flex flex-wrap gap-3">
+          <span class="bg-green-500 px-3 py-1 rounded-full text-sm">Professional Pitches</span>
+          <span class="bg-green-500 px-3 py-1 rounded-full text-sm">Sports Science Lab</span>
+          <span class="bg-green-500 px-3 py-1 rounded-full text-sm">Youth Academy</span>
+          <span class="bg-green-500 px-3 py-1 rounded-full text-sm">Recovery Center</span>
+        </div>
+      </div>
+      <div class="md:w-1/3 flex justify-center">
+        <div class="w-64 h-64 bg-green-500 rounded-full flex items-center justify-center text-white opacity-80">
+          <i class="fas fa-running text-6xl"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stadium Section -->
+  <section id="stadium" class="bg-white rounded-xl shadow-lg p-8 mb-8">
+    <h2 class="text-3xl font-bold text-gray-800 mb-6">Our Home: Dandora Stadium</h2>
+    <div class="flex flex-col lg:flex-row gap-8">
+      <div class="lg:w-1/2">
+        <div class="bg-gradient-to-br from-green-400 to-yellow-300 rounded-xl h-80 flex items-center justify-center text-white mb-6 shadow-lg">
+         <img src="tmlogo/stadium.jpeg" alt="Dandora Stadium" class="w-full h-full object-cover rounded-xl">
+        </div>
+      </div>
+      <div class="lg:w-1/2">
+        <h3 class="text-2xl font-bold text-gray-800 mb-4">The Fortress</h3>
+        <p class="text-gray-700 mb-4 text-lg">Located in the heart of Nairobi, our historic stadium has been the home of unforgettable football moments since 1965. With a capacity of 15,000 passionate fans, it's known as one of the most intimidating venues for visiting teams in East Africa.</p>
+        
+        <div class="grid grid-cols-2 gap-4 mb-6">
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <div class="flex items-center mb-2">
+              <i class="fas fa-users text-green-600 mr-2"></i>
+              <h4 class="font-bold text-gray-800">Capacity</h4>
+            </div>
+            <p class="text-gray-700">15,000 Seats</p>
+          </div>
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <div class="flex items-center mb-2">
+              <i class="fas fa-calendar-alt text-green-600 mr-2"></i>
+              <h4 class="font-bold text-gray-800">Established</h4>
+            </div>
+            <p class="text-gray-700">1965</p>
+          </div>
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <div class="flex items-center mb-2">
+              <i class="fas fa-trophy text-green-600 mr-2"></i>
+              <h4 class="font-bold text-gray-800">Pitch</h4>
+            </div>
+            <p class="text-gray-700">Natural Grass</p>
+          </div>
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <div class="flex items-center mb-2">
+              <i class="fas fa-map-marker-alt text-green-600 mr-2"></i>
+              <h4 class="font-bold text-gray-800">Location</h4>
+            </div>
+            <p class="text-gray-700">City Square</p>
+          </div>
+        </div>
+        
+        <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full transition transform hover:scale-105">
+          Book Stadium Tour
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Fans Section -->
+  <section class="bg-gradient-to-r from-yellow-400 to-yellow-600 text-white rounded-2xl shadow-lg p-8 mb-8">
+    <h2 class="text-3xl font-bold mb-6">The 12th Man: Our Passionate Fans</h2>
+    <div class="flex flex-col md:flex-row items-center">
+      <div class="md:w-1/3 mb-6 md:mb-0 flex justify-center">
+        <div class="w-64 h-64 bg-yellow-500 rounded-full flex items-center justify-center text-white opacity-80">
+          <i class="fas fa-users text-6xl"></i>
+        </div>
+      </div>
+      <div class="md:w-2/3 md:pl-8">
+        <p class="text-yellow-100 mb-4 text-lg">Known as "The Green Army," our supporters are the heartbeat of Nairobi United. Week in and week out, they create an electric atmosphere that inspires our players and makes our stadium a fortress.</p>
+        <p class="text-yellow-100 mb-6 text-lg">With over 50 official supporters' clubs across Kenya and East Africa, our fanbase continues to grow, united by their passion for the beautiful game and their unwavering support for the club.</p>
+        
+        <div class="bg-yellow-500/30 p-4 rounded-lg mb-6">
+          <h4 class="font-bold text-xl mb-2">Join The Green Army</h4>
+          <p class="text-yellow-100">Become part of our story. Follow us on social media, join our official supporters club, and be part of the most passionate fanbase in Kenyan football.</p>
+        </div>
+        
+        <div class="flex space-x-4">
+          <button class="bg-white text-yellow-700 font-bold py-2 px-6 rounded-full shadow-lg transition hover:scale-105">
+            Join Supporters Club
+          </button>
+          <button class="bg-transparent border-2 border-white text-white font-bold py-2 px-6 rounded-full transition hover:bg-white/10">
+            Matchday Experience
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Structure Section -->
+  <section class="bg-white rounded-xl shadow-lg p-8 mb-8">
+    <h2 class="text-3xl font-bold text-gray-800 mb-6">Our Football Structure</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- First Team -->
+      <div class="bg-green-50 rounded-xl p-6 text-center transform transition hover:scale-105 hover:shadow-lg">
+        <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center text-white mx-auto mb-4">
+          <i class="fas fa-trophy"></i>
+        </div>
+        <h3 class="text-xl font-bold text-gray-800 mb-2">First Team</h3>
+        <p class="text-gray-700 mb-4">Our senior squad competing in the Kenyan Premier League, featuring the best local and international talent.</p>
+        <button @click="activeTab = 'team-first'" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full text-sm transition">
+          View Squad
+        </button>
+      </div>
+      
+      <!-- Youth Academy -->
+      <div class="bg-yellow-50 rounded-xl p-6 text-center transform transition hover:scale-105 hover:shadow-lg">
+        <div class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center text-white mx-auto mb-4">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <h3 class="text-xl font-bold text-gray-800 mb-2">Youth Academy</h3>
+        <p class="text-gray-700 mb-4">Developing the next generation of football stars through our comprehensive youth development program.</p>
+        <button @click="activeTab = 'team-youth'" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-full text-sm transition">
+          Learn More
+        </button>
+      </div>
+      
+      <!-- Women's Team -->
+      <div class="bg-green-50 rounded-xl p-6 text-center transform transition hover:scale-105 hover:shadow-lg">
+        <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center text-white mx-auto mb-4">
+          <i class="fas fa-futbol"></i>
+        </div>
+        <h3 class="text-xl font-bold text-gray-800 mb-2">Women's Team</h3>
+        <p class="text-gray-700 mb-4">Our professional women's squad competing at the highest level of Kenyan women's football.</p>
+        <button @click="activeTab = 'team-women'" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full text-sm transition">
+          View Team
+        </button>
+      </div>
+      
+      <!-- Coaching Staff -->
+      <div class="bg-yellow-50 rounded-xl p-6 text-center transform transition hover:scale-105 hover:shadow-lg">
+        <div class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center text-white mx-auto mb-4">
+          <i class="fas fa-clipboard-list"></i>
+        </div>
+        <h3 class="text-xl font-bold text-gray-800 mb-2">Coaching Staff</h3>
+        <p class="text-gray-700 mb-4">Led by experienced professionals dedicated to tactical excellence and player development.</p>
+        <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded-full text-sm transition">
+          Meet Coaches
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Values -->
+  <section class="bg-gray-50 rounded-xl shadow-lg p-8">
+    <h2 class="text-3xl font-bold text-gray-800 mb-6">Our Mission & Values</h2>
+    
+    <div class="mb-8">
+      <h3 class="text-2xl font-bold text-gray-800 mb-4">Our Mission</h3>
+      <p class="text-gray-700 text-lg mb-6">To be the leading football club in East Africa by developing world-class talent, playing attractive football, and engaging with our community to inspire the next generation of football enthusiasts.</p>
+    </div>
+    
+    <h3 class="text-2xl font-bold text-gray-800 mb-4">Club Values</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="flex items-start bg-white p-4 rounded-lg shadow-sm">
+        <i class="fas fa-handshake text-green-600 text-2xl mt-1 mr-4"></i>
+        <div>
+          <h4 class="font-bold text-gray-800 text-lg mb-2">Integrity</h4>
+          <p class="text-gray-700">We conduct ourselves with honesty and fairness in all aspects of our operations, both on and off the pitch.</p>
+        </div>
+      </div>
+      
+      <div class="flex items-start bg-white p-4 rounded-lg shadow-sm">
+        <i class="fas fa-users text-green-600 text-2xl mt-1 mr-4"></i>
+        <div>
+          <h4 class="font-bold text-gray-800 text-lg mb-2">Community</h4>
+          <p class="text-gray-700">We are committed to serving and engaging with our local community through various outreach programs.</p>
+        </div>
+      </div>
+      
+      <div class="flex items-start bg-white p-4 rounded-lg shadow-sm">
+        <i class="fas fa-trophy text-green-600 text-2xl mt-1 mr-4"></i>
+        <div>
+          <h4 class="font-bold text-gray-800 text-lg mb-2">Excellence</h4>
+          <p class="text-gray-700">We strive for the highest standards in everything we do, from player development to matchday experiences.</p>
+        </div>
+      </div>
+      
+      <div class="flex items-start bg-white p-4 rounded-lg shadow-sm">
+        <i class="fas fa-heart text-green-600 text-2xl mt-1 mr-4"></i>
+        <div>
+          <h4 class="font-bold text-gray-800 text-lg mb-2">Passion</h4>
+          <p class="text-gray-700">We play and support with heart, energy, and dedication, embodying the spirit of Kenyan football.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+        <!-- Team Tabs -->
+<div x-show="activeTab === 'team-first'" x-cloak>
+    <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">First Team Squad 2025/26</h2>
+    
+    <!-- Position Filter Buttons -->
+    <div class="mb-8">
+        <div class="flex flex-wrap gap-2 mb-6">
+            <template x-for="position in positions" :key="position">
+                <button 
+                    @click="activePosition = position"
+                    class="px-4 py-2 rounded-full text-sm font-medium transition-all duration-200"
+                    :class="activePosition === position ? 
+                           'bg-green-600 text-white shadow-lg' : 
+                           'bg-gray-200 hover:bg-gray-300 text-gray-800'"
+                    x-text="position"
+                ></button>
+            </template>
+        </div>
+        
+        <!-- Players Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <template x-for="player in filteredPlayers" :key="player.id">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 transition-all duration-300 hover:shadow-xl hover:scale-105">
+                    <!-- Player Photo Area -->
+                    <div class="h-48 bg-gradient-to-br from-green-400 to-yellow-300 flex items-center justify-center relative">
+                        <i class="fas fa-user text-white text-6xl"></i>
+                        <!-- Jersey Number -->
+                        <div class="absolute top-4 left-4 bg-white/90 text-green-800 font-bold text-lg w-8 h-8 rounded-full flex items-center justify-center" x-text="player.jerseyNumber"></div>
+                    </div>
+                    
+                    <!-- Player Details -->
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800" x-text="player.name"></h3>
+                        <p class="text-green-600 font-semibold" x-text="player.position"></p>
+                        <p class="text-gray-600 mt-2" x-text="'#' + player.jerseyNumber + ' | Age: ' + player.age"></p>
+                        <p class="text-gray-600" x-text="player.height ? 'Height: ' + player.height : ''"></p>
+                        <p class="text-gray-600" x-text="player.stats ? player.stats : ''"></p>
+                        
+                        <!-- Player Badges -->
+                        <div class="mt-4 flex flex-wrap gap-2" x-show="player.badges && player.badges.length > 0">
+                            <template x-for="badge in player.badges" :key="badge">
+                                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded" x-text="badge"></span>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+        
+        <!-- Empty State -->
+        <div x-show="filteredPlayers.length === 0" class="text-center py-12">
+            <i class="fas fa-users text-gray-300 text-6xl mb-4"></i>
+            <p class="text-gray-500 text-lg">No players found for this position.</p>
+        </div>
+    </div>
+</div>
+
+        <div x-show="activeTab === 'team-youth'" x-cloak>
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">Youth Team</h2>
+            <div class="bg-white rounded-xl shadow-lg p-8 text-center">
+                <div class="max-w-md mx-auto">
+                    <i class="fas fa-futbol text-green-500 text-6xl mb-4"></i>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Developing Future Stars</h3>
+                    <p class="text-gray-700 mb-6">Our youth academy is dedicated to nurturing the next generation of football talent. With state-of-the-art facilities and expert coaching, we provide a pathway to professional football.</p>
+                    <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full transition">
+                        Learn About Our Academy
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div x-show="activeTab === 'team-women'" x-cloak>
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">Women Team</h2>
+            <div class="bg-white rounded-xl shadow-lg p-8 text-center">
+                <div class="max-w-md mx-auto">
+                    <i class="fas fa-futbol text-yellow-500 text-6xl mb-4"></i>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Nairobi United Women</h3>
+                    <p class="text-gray-700 mb-6">Our women's team competes at the highest level of Kenyan women's football. With a growing fan base and increasing success, they are paving the way for women's sports in the region.</p>
+                    <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full transition">
+                        View Women's Team
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- News Tabs -->
+        <div x-show="activeTab === 'news-results'" x-cloak>
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">Match Results</h2>
+            
+            <div class="space-y-6">
+                <!-- Result 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="bg-green-700 text-white px-6 py-3">
+                        <div class="flex justify-between items-center">
+                            <span class="font-medium">Kenyan Premier League</span>
+                            <span>October 1, 2025</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex flex-col md:flex-row items-center justify-between">
+                            <div class="flex items-center mb-4 md:mb-0">
+                                <div class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold mr-4"><img src="tmlogo/logo.png" alt="Nairobi United Logo" class="w-full h-full object-cover rounded-full"></div>
+                                <div>
+                                    <h3 class="text-xl font-bold">Nairobi United</h3>
+                                    <p class="text-gray-600">Home</p>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center my-4 md:my-0">
+                                <div class="text-3xl font-black text-gray-800">2 - 1</div>
+                                <div class="text-gray-600 mt-1">Full Time</div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <div class="text-right mr-4">
+                                    <h3 class="text-xl font-bold">Kariobangi Sharks</h3>
+                                    <p class="text-gray-600">Away</p>
+                                </div>
+                                <div class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold"><img src="tmlogo/sharks.png" alt="Kariobangi Sharks Logo" class="w-full h-full object-cover rounded-full"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 pt-6 border-t border-gray-200">
+                            <h4 class="font-bold text-gray-800 mb-2">Match Summary</h4>
+                            <p class="text-gray-700">Nairobi United came from behind to secure a vital victory against Kariobangi Sharks. Brian Omondi scored the winner in the 78th minute after Joseph Mwangi had equalized in the first half.</p>
+                            
+                            <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <h5 class="font-bold text-gray-800 mb-1">Goals</h5>
+                                    <ul class="text-gray-700 text-sm">
+                                        <li>J. Mwangi (32')</li>
+                                        <li>B. Omondi (78')</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h5 class="font-bold text-gray-800 mb-1">Attendance</h5>
+                                    <p class="text-gray-700 text-sm">12,458</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Result 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="bg-green-700 text-white px-6 py-3">
+                        <div class="flex justify-between items-center">
+                            <span class="font-medium">Kenyan Premier League</span>
+                            <span>September 24, 2025</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex flex-col md:flex-row items-center justify-between">
+                            <div class="flex items-center mb-4 md:mb-0">
+                                <div class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold mr-4"><img src="tmlogo/afc.png" alt="AFC Leopards Logo" class="w-full h-full object-cover rounded-full"></div>
+                                <div>
+                                    <h3 class="text-xl font-bold">AFC Leopards</h3>
+                                    <p class="text-gray-600">Home</p>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center my-4 md:my-0">
+                                <div class="text-3xl font-black text-gray-800">1 - 1</div>
+                                <div class="text-gray-600 mt-1">Full Time</div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <div class="text-right mr-4">
+                                    <h3 class="text-xl font-bold">Nairobi United</h3>
+                                    <p class="text-gray-600">Away</p>
+                                </div>
+                                <div class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold"><img src="tmlogo/logo.png" alt="Nairobi United Logo" class="w-full h-full object-cover rounded-full"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 pt-6 border-t border-gray-200">
+                            <h4 class="font-bold text-gray-800 mb-2">Match Summary</h4>
+                            <p class="text-gray-700">A hard-fought draw in a tense Nairobi derby. David Otieno scored the equalizer for United in the second half after AFC Leopards had taken an early lead.</p>
+                            
+                            <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <h5 class="font-bold text-gray-800 mb-1">Goals</h5>
+                                    <ul class="text-gray-700 text-sm">
+                                        <li>D. Otieno (67')</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h5 class="font-bold text-gray-800 mb-1">Attendance</h5>
+                                    <p class="text-gray-700 text-sm">14,920</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div x-show="activeTab === 'news-fixtures'" x-cloak>
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">Upcoming Fixtures</h2>
+            
+            <div class="space-y-6">
+                <!-- Fixture 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="bg-green-700 text-white px-6 py-3">
+                        <div class="flex justify-between items-center">
+                            <span class="font-medium">Kenyan Premier League</span>
+                            <span>October 14, 2025 • 16:00 EAT</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex flex-col md:flex-row items-center justify-between">
+                            <div class="flex items-center mb-4 md:mb-0">
+                                <div class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold mr-4"><img src="tmlogo/logo.png" alt="Nairobi United Logo" class="w-full h-full object-cover rounded-full"></div>
+                                <div>
+                                    <h3 class="text-xl font-bold">Nairobi United</h3>
+                                    <p class="text-gray-600">Home</p>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center my-4 md:my-0">
+                                <div class="text-3xl font-black text-gray-800">VS</div>
+                                <div class="text-gray-600 mt-1">Nairobi City Stadium</div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <div class="text-right mr-4">
+                                    <h3 class="text-xl font-bold">Shabana</h3>
+                                    <p class="text-gray-600">Away</p>
+                                </div>
+                                <div class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold"><img src="tmlogo/shabana.png" alt="Shabana Logo" class="w-full h-full object-cover rounded-full"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 pt-6 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center">
+                            <div class="mb-4 md:mb-0">
+                                <div class="flex items-center text-gray-700">
+                                    <i class="fas fa-map-marker-alt text-green-600 mr-2"></i>
+                                    <span>Nairobi City Stadium</span>
+                                </div>
+                            </div>
+                            <div class="flex space-x-4">
+                                <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full transition">
+                                    Buy Tickets
+                                </button>
+                                <button class="bg-transparent border border-green-600 text-green-600 hover:bg-green-50 font-bold py-2 px-6 rounded-full transition">
+                                    Remind Me
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fixture 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div class="bg-green-700 text-white px-6 py-3">
+                        <div class="flex justify-between items-center">
+                            <span class="font-medium">Kenyan Premier League</span>
+                            <span>October 21, 2025 • 19:00 EAT</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex flex-col md:flex-row items-center justify-between">
+                            <div class="flex items-center mb-4 md:mb-0">
+                                <div class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold mr-4"><img src="tmlogo/afc.png" alt="Afc Logo" class="w-full h-full object-cover rounded-full"></div>
+                                <div>
+                                    <h3 class="text-xl font-bold">Afc</h3>
+                                    <p class="text-gray-600">Home</p>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center my-4 md:my-0">
+                                <div class="text-3xl font-black text-gray-800">VS</div>
+                                <div class="text-gray-600 mt-1">Nyayo National Stadium</div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <div class="text-right mr-4">
+                                    <h3 class="text-xl font-bold">Nairobi United</h3>
+                                    <p class="text-gray-600">Away</p>
+                                </div>
+                                <div class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold"><img src="tmlogo/logo.png" alt="Nairobi United Logo" class="w-full h-full object-cover rounded-full"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 pt-6 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center">
+                            <div class="mb-4 md:mb-0">
+                                <div class="flex items-center text-gray-700">
+                                    <i class="fas fa-map-marker-alt text-green-600 mr-2"></i>
+                                    <span>Nyayo National Stadium</span>
+                                </div>
+                            </div>
+                            <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full transition">
+                                Buy Tickets
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div x-show="activeTab === 'news-table'" x-cloak>
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">League Table</h2>
+            
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
+                <table class="w-full">
+                    <thead class="bg-green-700 text-white">
+                        <tr>
+                            <th class="py-3 px-4 text-left">Pos</th>
+                            <th class="py-3 px-4 text-left">Team</th>
+                            <th class="py-3 px-4 text-center">P</th>
+                            <th class="py-3 px-4 text-center">W</th>
+                            <th class="py-3 px-4 text-center">D</th>
+                            <th class="py-3 px-4 text-center">L</th>
+                            <th class="py-3 px-4 text-center">GF</th>
+                            <th class="py-3 px-4 text-center">GA</th>
+                            <th class="py-3 px-4 text-center">GD</th>
+                            <th class="py-3 px-4 text-center">Pts</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-green-50 font-bold border-b border-green-100">
+                            <td class="py-3 px-4">1</td>
+                            <td class="py-3 px-4 flex items-center">
+                                <div class="w-6 h-6 bg-green-600 rounded-full mr-2 flex items-center justify-center text-white text-xs">NU</div>
+                                Nairobi United
+                            </td>
+                            <td class="py-3 px-4 text-center">8</td>
+                            <td class="py-3 px-4 text-center">6</td>
+                            <td class="py-3 px-4 text-center">2</td>
+                            <td class="py-3 px-4 text-center">0</td>
+                            <td class="py-3 px-4 text-center">15</td>
+                            <td class="py-3 px-4 text-center">3</td>
+                            <td class="py-3 px-4 text-center">+12</td>
+                            <td class="py-3 px-4 text-center font-bold">20</td>
+                        </tr>
+                        <tr class="border-b border-gray-200">
+                            <td class="py-3 px-4">2</td>
+                            <td class="py-3 px-4 flex items-center">
+                                <div class="w-6 h-6 bg-gray-800 rounded-full mr-2 flex items-center justify-center text-white text-xs">GM</div>
+                                Gor Mahia
+                            </td>
+                            <td class="py-3 px-4 text-center">8</td>
+                            <td class="py-3 px-4 text-center">5</td>
+                            <td class="py-3 px-4 text-center">2</td>
+                            <td class="py-3 px-4 text-center">1</td>
+                            <td class="py-3 px-4 text-center">12</td>
+                            <td class="py-3 px-4 text-center">4</td>
+                            <td class="py-3 px-4 text-center">+8</td>
+                            <td class="py-3 px-4 text-center">17</td>
+                        </tr>
+                        <tr class="border-b border-gray-200">
+                            <td class="py-3 px-4">3</td>
+                            <td class="py-3 px-4 flex items-center">
+                                <div class="w-6 h-6 bg-blue-500 rounded-full mr-2 flex items-center justify-center text-white text-xs">TZ</div>
+                                Tusker FC
+                            </td>
+                            <td class="py-3 px-4 text-center">8</td>
+                            <td class="py-3 px-4 text-center">5</td>
+                            <td class="py-3 px-4 text-center">1</td>
+                            <td class="py-3 px-4 text-center">2</td>
+                            <td class="py-3 px-4 text-center">11</td>
+                            <td class="py-3 px-4 text-center">4</td>
+                            <td class="py-3 px-4 text-center">+7</td>
+                            <td class="py-3 px-4 text-center">16</td>
+                        </tr>
+                        <tr class="border-b border-gray-200">
+                            <td class="py-3 px-4">4</td>
+                            <td class="py-3 px-4 flex items-center">
+                                <div class="w-6 h-6 bg-red-500 rounded-full mr-2 flex items-center justify-center text-white text-xs">AFC</div>
+                                AFC Leopards
+                            </td>
+                            <td class="py-3 px-4 text-center">8</td>
+                            <td class="py-3 px-4 text-center">4</td>
+                            <td class="py-3 px-4 text-center">3</td>
+                            <td class="py-3 px-4 text-center">1</td>
+                            <td class="py-3 px-4 text-center">10</td>
+                            <td class="py-3 px-4 text-center">6</td>
+                            <td class="py-3 px-4 text-center">+4</td>
+                            <td class="py-3 px-4 text-center">15</td>
+                        </tr>
+                        <tr class="border-b border-gray-200">
+                            <td class="py-3 px-4">5</td>
+                            <td class="py-3 px-4 flex items-center">
+                                <div class="w-6 h-6 bg-blue-500 rounded-full mr-2 flex items-center justify-center text-white text-xs">KS</div>
+                                Kariobangi Sharks
+                            </td>
+                            <td class="py-3 px-4 text-center">8</td>
+                            <td class="py-3 px-4 text-center">4</td>
+                            <td class="py-3 px-4 text-center">2</td>
+                            <td class="py-3 px-4 text-center">2</td>
+                            <td class="py-3 px-4 text-center">9</td>
+                            <td class="py-3 px-4 text-center">7</td>
+                            <td class="py-3 px-4 text-center">+2</td>
+                            <td class="py-3 px-4 text-center">14</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Shop Tab -->
+        <div x-show="activeTab === 'shop'" x-cloak>
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b pb-2">Official Store</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <!-- Product 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 transition hover:shadow-xl">
+                    <div class="h-64 bg-gradient-to-br from-green-600 to-yellow-400 flex items-center justify-center relative">
+                        <div class="absolute top-4 right-4 bg-yellow-400 text-green-900 font-bold py-1 px-3 rounded-full text-sm">
+                            Popular
+                        </div>
+                        <i class="fas fa-tshirt text-white text-7xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Home Jersey 2025/26</h3>
+                        <p class="text-gray-600 mb-4">Official home kit with player specifications</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-green-700">KSh 3,500</span>
+                            <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full transition">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 transition hover:shadow-xl">
+                    <div class="h-64 bg-gradient-to-br from-gray-800 to-green-600 flex items-center justify-center">
+                        <i class="fas fa-tshirt text-white text-7xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Away Jersey 2025/26</h3>
+                        <p class="text-gray-600 mb-4">Official away kit with player specifications</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-green-700">KSh 3,500</span>
+                            <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full transition">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200 transition hover:shadow-xl">
+                    <div class="h-64 bg-gradient-to-br from-yellow-400 to-green-600 flex items-center justify-center">
+                        <i class="fas fa-hat-cowboy text-white text-7xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Official Cap</h3>
+                        <p class="text-gray-600 mb-4">Adjustable cap with club crest</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-green-700">KSh 1,200</span>
+                            <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full transition">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-gradient-to-r from-green-600 to-green-800 text-white rounded-2xl p-8 shadow-lg">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-2/3 mb-6 md:mb-0">
+                        <h3 class="text-2xl font-bold mb-2">Match Tickets</h3>
+                        <p class="text-green-100 mb-4">Secure your seat at the Nairobi City Stadium and support the team in person.</p>
+                        <div class="flex flex-wrap gap-4">
+                            <button class="bg-yellow-400 hover:bg-yellow-300 text-green-900 font-bold py-3 px-6 rounded-full shadow-lg transition">
+                                Buy Tickets Online
+                            </button>
+                            <button class="bg-transparent border-2 border-white hover:bg-white/10 text-white font-bold py-3 px-6 rounded-full transition">
+                                Ticket Information
+                            </button>
+                        </div>
+                    </div>
+                    <div class="md:w-1/3 flex justify-center">
+                        <i class="fas fa-ticket-alt text-6xl opacity-80"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Nairobi United</h3>
+                    <p class="text-gray-400">Proudly representing Kenya in the top football league since 1960.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" @click="activeTab = 'home'" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="#" @click="activeTab = 'news-fixtures'" class="text-gray-400 hover:text-white transition">Fixtures</a></li>
+                        <li><a href="#" @click="activeTab = 'news-results'" class="text-gray-400 hover:text-white transition">Results</a></li>
+                        <li><a href="#" @click="activeTab = 'shop'" class="text-gray-400 hover:text-white transition">Tickets</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Teams</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" @click="activeTab = 'team-first'" class="text-gray-400 hover:text-white transition">First Team</a></li>
+                        <li><a href="#" @click="activeTab = 'team-youth'" class="text-gray-400 hover:text-white transition">Youth Team</a></li>
+                        <li><a href="#" @click="activeTab = 'team-women'" class="text-gray-400 hover:text-white transition">Women Team</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Connect With Us</h4>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-youtube text-xl"></i></a>
+                    </div>
+                    <p class="text-gray-400">Nairobi City Stadium</p>
+                    <p class="text-gray-400">City Square, Nairobi</p>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-700 text-center text-gray-400">
+                <p>© 2025 Nairobi United. All rights reserved. Proudly flying the flag for Kenyan football.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    function nairobiUnitedApp() {
+        return {
+            activeTab: 'home',
+            mobileMenuOpen: false,
+            teamMenuOpen: false,
+            newsMenuOpen: false,
+            
+            // Team squad data and filtering functionality
+            activePosition: 'All',
+            positions: ['All', 'Goalkeepers', 'Defenders', 'Midfielders', 'Forwards'],
+            
+            players: [
+                // Goalkeepers
+                {
+                    id: 1,
+                    name: "Joseph Mwangi",
+                    position: "Goalkeeper",
+                    jerseyNumber: 1,
+                    age: 28,
+                    height: "1.89m",
+                    stats: "Clean Sheets: 12",
+                    badges: ["Captain", "Kenyan"],
+                    category: "Goalkeepers"
+                },
+                {
+                    id: 2,
+                    name: "Samuel Ochieng",
+                    position: "Goalkeeper", 
+                    jerseyNumber: 22,
+                    age: 24,
+                    height: "1.85m",
+                    stats: "Clean Sheets: 5",
+                    badges: ["Kenyan"],
+                    category: "Goalkeepers"
+                },
+                
+                // Defenders
+                {
+                    id: 3,
+                    name: "David Otieno",
+                    position: "Center Back",
+                    jerseyNumber: 4,
+                    age: 26,
+                    height: "1.85m",
+                    stats: "Tackles: 89%",
+                    badges: ["Vice Captain", "Kenyan"],
+                    category: "Defenders"
+                },
+                {
+                    id: 4,
+                    name: "James Mbugua",
+                    position: "Right Back",
+                    jerseyNumber: 2,
+                    age: 25,
+                    height: "1.78m",
+                    stats: "Assists: 4",
+                    badges: ["Kenyan"],
+                    category: "Defenders"
+                },
+                {
+                    id: 5,
+                    name: "Michael Kamau",
+                    position: "Left Back",
+                    jerseyNumber: 3,
+                    age: 27,
+                    height: "1.80m",
+                    stats: "Crosses: 67%",
+                    badges: ["Kenyan"],
+                    category: "Defenders"
+                },
+                {
+                    id: 6,
+                    name: "Robert Gitonga",
+                    position: "Center Back", 
+                    jerseyNumber: 15,
+                    age: 29,
+                    height: "1.88m",
+                    stats: "Aerial Duels: 75%",
+                    badges: ["Kenyan"],
+                    category: "Defenders"
+                },
+                
+                // Midfielders
+                {
+                    id: 7,
+                    name: "Kevin Omondi",
+                    position: "Central Midfielder",
+                    jerseyNumber: 8,
+                    age: 26,
+                    height: "1.82m",
+                    stats: "Pass Accuracy: 88%",
+                    badges: ["Kenyan"],
+                    category: "Midfielders"
+                },
+                {
+                    id: 8, 
+                    name: "Eric Nyong'o",
+                    position: "Defensive Midfielder",
+                    jerseyNumber: 6,
+                    age: 30,
+                    height: "1.84m",
+                    stats: "Interceptions: 45",
+                    badges: ["Kenyan", "Experience"],
+                    category: "Midfielders"
+                },
+                {
+                    id: 9,
+                    name: "Paul Kipchumba",
+                    position: "Attacking Midfielder", 
+                    jerseyNumber: 10,
+                    age: 25,
+                    height: "1.79m",
+                    stats: "Goals: 8 | Assists: 12",
+                    badges: ["Playmaker", "Kenyan"],
+                    category: "Midfielders"
+                },
+                
+                // Forwards
+                {
+                    id: 10,
+                    name: "Brian Omondi",
+                    position: "Striker",
+                    jerseyNumber: 9,
+                    age: 24,
+                    height: "1.83m", 
+                    stats: "Goals: 15 | Assists: 6",
+                    badges: ["Top Scorer", "Kenyan"],
+                    category: "Forwards"
+                },
+                {
+                    id: 11,
+                    name: "Daniel Adera",
+                    position: "Winger",
+                    jerseyNumber: 7,
+                    age: 23,
+                    height: "1.76m",
+                    stats: "Goals: 7 | Assists: 9", 
+                    badges: ["Speed", "Kenyan"],
+                    category: "Forwards"
+                },
+                {
+                    id: 12,
+                    name: "Victor Odhiambo",
+                    position: "Forward",
+                    jerseyNumber: 11,
+                    age: 22,
+                    height: "1.81m",
+                    stats: "Goals: 5 | Assists: 7",
+                    badges: ["Young Talent", "Kenyan"],
+                    category: "Forwards"
+                }
+            ],
+            
+            // Computed property to filter players
+            get filteredPlayers() {
+                if (this.activePosition === 'All') {
+                    return this.players;
+                }
+                return this.players.filter(player => player.category === this.activePosition);
+            },
+            
+            // Scroll function for About page
+            scrollToSection(sectionId) {
+                const element = document.getElementById(sectionId);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            },
+            
+            init() {
+                // Any initialization code can go here
+            }
+        }
+    }
+</script>
+</body>
+</html>
