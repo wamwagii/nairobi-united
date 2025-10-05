@@ -1104,15 +1104,26 @@
             </table>
         </div>
         
-        <!-- Mobile Cards -->
+        <!-- Mobile Table -->
         <div class="md:hidden">
+            <!-- Mobile Table Header -->
+            <div class="bg-green-700 text-white px-4 py-3 grid grid-cols-12 gap-2 text-xs font-medium">
+                <div class="col-span-2">Pos</div>
+                <div class="col-span-5">Club</div>
+                <div class="col-span-2 text-center">P</div>
+                <div class="col-span-2 text-center">GF</div>
+                <div class="col-span-1 text-center">Pts</div>
+            </div>
+            
+            <!-- Mobile Table Rows -->
             <template x-for="team in leagueTable" :key="team.id">
-                <div class="border-b border-gray-200 p-4 hover:bg-gray-50 transition-colors"
+                <div class="border-b border-gray-200 px-4 py-3 hover:bg-gray-50 transition-colors grid grid-cols-12 gap-2 items-center"
                      :class="team.id === 1 ? 'bg-green-50' : ''">
-                    <div class="flex justify-between items-start mb-2">
+                    <!-- Position & Change Indicator -->
+                    <div class="col-span-2">
                         <div class="flex items-center">
-                            <span class="font-bold text-lg mr-2" x-text="team.position"></span>
-                            <div class="mr-2">
+                            <span class="font-bold text-sm mr-1" x-text="team.position"></span>
+                            <div>
                                 <template x-if="team.positionChange > 0">
                                     <i class="fas fa-chevron-up text-green-500 text-xs"></i>
                                 </template>
@@ -1123,51 +1134,32 @@
                                     <i class="fas fa-minus text-gray-400 text-xs"></i>
                                 </template>
                             </div>
-                            <div class="w-8 h-8 rounded-full mr-3 bg-gray-200 overflow-hidden">
+                        </div>
+                    </div>
+                    
+                    <!-- Team Name & Logo -->
+                    <div class="col-span-5">
+                        <div class="flex items-center">
+                            <div class="w-6 h-6 rounded-full mr-2 bg-gray-200 overflow-hidden flex-shrink-0">
                                 <img :src="team.logo" :alt="team.name" class="w-full h-full object-cover">
                             </div>
-                            <span class="font-medium text-sm" x-text="team.name"></span>
-                        </div>
-                        <div class="text-right">
-                            <div class="font-bold text-lg" x-text="team.points"></div>
-                            <div class="text-xs text-gray-500">PTS</div>
+                            <span class="font-medium text-sm truncate" x-text="team.name"></span>
                         </div>
                     </div>
                     
-                    <div class="grid grid-cols-4 gap-2 text-xs text-center mb-2">
-                        <div>
-                            <div class="font-semibold" x-text="team.played"></div>
-                            <div class="text-gray-500">PL</div>
-                        </div>
-                        <div>
-                            <div class="font-semibold" x-text="team.won"></div>
-                            <div class="text-gray-500">W</div>
-                        </div>
-                        <div>
-                            <div class="font-semibold" x-text="team.drawn"></div>
-                            <div class="text-gray-500">D</div>
-                        </div>
-                        <div>
-                            <div class="font-semibold" x-text="team.lost"></div>
-                            <div class="text-gray-500">L</div>
-                        </div>
+                    <!-- Played -->
+                    <div class="col-span-2 text-center">
+                        <span class="font-semibold text-sm" x-text="team.played"></span>
                     </div>
                     
-                    <div class="flex justify-between items-center text-xs">
-                        <div>
-                            <span class="font-semibold" x-text="team.goalsFor"></span>
-                            <span class="text-gray-500"> : </span>
-                            <span class="font-semibold" x-text="team.goalsAgainst"></span>
-                            <span class="ml-2 font-medium" 
-                                  :class="team.goalDifference > 0 ? 'text-green-600' : team.goalDifference < 0 ? 'text-red-600' : 'text-gray-600'"
-                                  x-text="team.goalDifference > 0 ? '+' + team.goalDifference : team.goalDifference"></span>
-                        </div>
-                        <div class="flex space-x-1">
-                            <template x-for="result in team.form" :key="result">
-                                <div class="w-2 h-2 rounded-full" 
-                                     :class="result === 'W' ? 'bg-green-500' : result === 'D' ? 'bg-yellow-500' : 'bg-red-500'"></div>
-                            </template>
-                        </div>
+                    <!-- Goals For -->
+                    <div class="col-span-2 text-center">
+                        <span class="font-semibold text-sm" x-text="team.goalsFor"></span>
+                    </div>
+                    
+                    <!-- Points -->
+                    <div class="col-span-1 text-center">
+                        <span class="font-bold text-sm" x-text="team.points"></span>
                     </div>
                 </div>
             </template>
